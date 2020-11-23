@@ -48,6 +48,77 @@ app.post("/api/user/signin", async (req, res) => {
   }
 });
 
+app.post("/api/data/getData", async (req, res) => {
+  const { id } = req.body;
+  try {
+    const data = await dataService.getData(id);
+    res.json(data);
+  } catch (err) {
+    res.status(400);
+    res.json({
+      err: err.message,
+    });
+  }
+});
+
+app.post("/api/data/createData", async (req, res) => {
+  const { id,
+    label,
+    col_19,
+    age,
+    gender,
+    city,
+    district,
+    numberOfCall,
+    numberOfContactAll,
+    numberOfAppearance,
+    numberBeCalled,
+    uploadDataMean,
+    uploadDataMin,
+    uploadDataMax,
+    downloadDataMean,
+    downloadDataMin,
+    downloadDataMax,
+    timecall_mean,
+    timecall_max,
+    timecall_min,
+    numberOfRecharge,
+    numberOfLoan,
+    numberOfRepay } = req.body;
+    console.log(id)
+  try {
+    const newData = await dataService.createData(id,
+      label,
+      col_19,
+      age,
+      gender,
+      city,
+      district,
+      numberOfCall,
+      numberOfContactAll,
+      numberOfAppearance,
+      numberBeCalled,
+      uploadDataMean,
+      uploadDataMin,
+      uploadDataMax,
+      downloadDataMean,
+      downloadDataMin,
+      downloadDataMax,
+      timecall_mean,
+      timecall_max,
+      timecall_min,
+      numberOfRecharge,
+      numberOfLoan,
+      numberOfRepay,);
+    res.json(newData);
+  } catch (err) {
+    res.status(400);
+    res.json({
+      err: err.message,
+    });
+  }
+});
+
 app.post("/api/user/update", async (req, res) => {
   const { name, email } = req.body;
   try {
